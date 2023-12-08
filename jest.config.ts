@@ -1,6 +1,6 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 
-export default {
+module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   rootDir: ".",
@@ -8,4 +8,5 @@ export default {
     "^@hooks(.*)$": "<rootDir>/packages/hooks$1",
     "^@utils(.*)$": "<rootDir>/packages/utils$1",
   },
+  testPathIgnorePatterns: ["node_modules", "dist"],
 };
