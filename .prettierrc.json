@@ -8,6 +8,5 @@
   "arrowParens": "always",
   "trailingComma": "es5",
   "semi": true,
-  "endOfLine": "auto",
-  "eslintIntegration": false
+  "endOfLine": "auto"
 }
