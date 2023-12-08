@@ -17,6 +17,16 @@ module.exports = {
         html: true,
       },
     ],
+    "sort-imports": [
+      "error",
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+        allowSeparatedGroups: false,
+      },
+    ],
     "prettier/prettier": "error",
     "no-console": "error",
   },
