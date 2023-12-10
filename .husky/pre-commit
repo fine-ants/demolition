@@ -1,4 +1,20 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm test && npx lint-staged
+# Run tests
+npm test
+
+# Run lint-staged
+npx lint-staged
+
+# Check if `skip-build` env variable is set
+# Ex: `env skip-build=true git commit`
+if [ -n "$skip-build" ]; then
+  echo "Skipping build."
+else
+  # Run build
+  npm run build
+
+  # Add build changes to staging area
+  git add dist
+fi
