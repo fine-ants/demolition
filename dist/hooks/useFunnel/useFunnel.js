@@ -2,13 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
+/**
+ * This is a custom hook that handles a funnel component.
+ *
+ * @param {string[]} steps An array of the name of the steps.
+ */
 function useFunnel(steps) {
     const [currentStep, setCurrentStep] = (0, react_1.useState)(steps[0]);
     const changeStep = (step) => {
         setCurrentStep(step);
     };
     // Step Component
-    // Must receive a name.
+    // Must receive a name, which will be used in determining which step to render.
     function Step({ children }) {
         return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: children });
     }

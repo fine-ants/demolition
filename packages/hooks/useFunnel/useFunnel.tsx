@@ -1,5 +1,10 @@
 import { Children, ReactNode, isValidElement, useMemo, useState } from "react";
 
+/**
+ * This is a custom hook that handles a funnel component.
+ *
+ * @param {string[]} steps An array of the name of the steps.
+ */
 export default function useFunnel<S extends string>(steps: [S, ...S[]]) {
   const [currentStep, setCurrentStep] = useState<S>(steps[0]);
 
@@ -8,7 +13,7 @@ export default function useFunnel<S extends string>(steps: [S, ...S[]]) {
   };
 
   // Step Component
-  // Must receive a name.
+  // Must receive a name, which will be used in determining which step to render.
   function Step({ children }: { name: S; children: ReactNode }) {
     return <>{children}</>;
   }
