@@ -7,9 +7,9 @@ npm test
 # Run lint-staged
 npx lint-staged
 
-# Check if `skip-build` env variable is set
-# Ex: `env skip-build=true git commit`
-if [ -n "$skip-build" ]; then
+# Check if `SKIP_BUILD` env variable is set
+# Ex: `env SKIP_BUILD=true git commit`
+if [ "$SKIP_BUILD" = "true" ]; then
   echo "Skipping build."
 else
   # Run build
