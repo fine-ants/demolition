@@ -5,8 +5,15 @@ type Props = {
   validators?: Array<(value: string) => void>;
 };
 
-export default function useText(options?: Props) {
-  const { initialValue = "", validators } = options || {};
+/**
+ * This is a custom hook that handles text input with optional input validators.
+ *
+ * @param {Object} [config] Optional.
+ * @param {string} [config.initialValue] Initial value of the text. Optional.
+ * @param {Function[]} [config.validators] Array of validator functions. Optional.
+ */
+export default function useText(config?: Props) {
+  const { initialValue = "", validators } = config || {};
 
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState("");
