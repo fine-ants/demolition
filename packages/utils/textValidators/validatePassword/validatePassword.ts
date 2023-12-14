@@ -1,13 +1,19 @@
-// A function that validates password format.
-// Default regExp: at least one alphabet, one number, one special character, 8~16 characters.
+import { ValidatorConfig } from "../types";
+
+/**
+ * This is a function that validates password format.
+ *
+ * Default RegExp: at least one alphabet, one number, one special character, and between 8-16 characters.
+ *
+ * @param {string} password
+ * @param {config} [config] Validator configurations. Optional.
+ * @throws Will throw an error if `password` is invalid.
+ */
 export default function validatePassword(
   password: string,
-  options?: {
-    regExp?: RegExp;
-    errorMessage?: string;
-  }
+  config?: ValidatorConfig
 ) {
-  const { regExp, errorMessage } = options ?? {};
+  const { regExp, errorMessage } = config ?? {};
 
   const passwordRegex =
     regExp ??

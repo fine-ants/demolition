@@ -1,9 +1,19 @@
-// A function that validates email format.
+import { ValidatorConfig } from "../types";
+
+/**
+ * This is a function that validates email format.
+ *
+ * Default RegExp: generic email format. Provide a more specific RegExp via `config` if needed.
+ *
+ * @param {string} email
+ * @param {config} [config] Validator configurations. Optional.
+ * @throws Will throw an error if `email` is invalid.
+ */
 export default function validateEmail(
   email: string,
-  options?: { regExp?: RegExp; errorMessage?: string }
-) {
-  const { regExp, errorMessage } = options ?? {};
+  config?: ValidatorConfig
+): void {
+  const { regExp, errorMessage } = config ?? {};
 
   const emailRegex =
     regExp ??
