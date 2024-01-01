@@ -20,7 +20,7 @@ export default function useFunnel<S extends string>(steps: S[]) {
 
   // Funnel Component
   // Receives only Step components as children.
-  function Funnel({ children }: { children: ReactNode }) {
+  function FunnelComponent({ children }: { children: ReactNode }) {
     const targetStep = Children.toArray(children).find((child) => {
       if (!isValidElement(child) || child.type !== Step) {
         throw new Error(
@@ -35,11 +35,11 @@ export default function useFunnel<S extends string>(steps: S[]) {
     return <>{targetStep}</>;
   }
 
-  const FunnelComponent = useMemo(
-    () => Object.assign(Funnel, { Step }),
+  const FunnelComponentMemo = useMemo(
+    () => Object.assign(FunnelComponent, { Step }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentStep]
   );
 
-  return { currentStep, FunnelComponent, changeStep } as const;
+  return { currentStep, Funnel: FunnelComponentMemo, changeStep } as const;
 }

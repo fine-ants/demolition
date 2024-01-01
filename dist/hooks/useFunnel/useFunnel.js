@@ -19,7 +19,7 @@ function useFunnel(steps) {
     }
     // Funnel Component
     // Receives only Step components as children.
-    function Funnel({ children }) {
+    function FunnelComponent({ children }) {
         const targetStep = react_1.Children.toArray(children).find((child) => {
             if (!(0, react_1.isValidElement)(child) || child.type !== Step) {
                 throw new Error(`${(0, react_1.isValidElement)(child) ? child.type : child} is not a <Funnel.Step> component. All component children of <Funnel> must be a <Funnel.Step>.`);
@@ -28,10 +28,10 @@ function useFunnel(steps) {
         });
         return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: targetStep });
     }
-    const FunnelComponent = (0, react_1.useMemo)(() => Object.assign(Funnel, { Step }), 
+    const FunnelComponentMemo = (0, react_1.useMemo)(() => Object.assign(FunnelComponent, { Step }), 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentStep]);
-    return { currentStep, FunnelComponent, changeStep };
+    return { currentStep, Funnel: FunnelComponentMemo, changeStep };
 }
 exports.default = useFunnel;
 //# sourceMappingURL=useFunnel.js.map

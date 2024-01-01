@@ -4,7 +4,7 @@ import useFunnel from "./useFunnel";
 
 function TestComponent() {
   const stepList = ["step1", "step2"];
-  const { FunnelComponent: Funnel, changeStep } = useFunnel(stepList);
+  const { Funnel, changeStep } = useFunnel(stepList);
 
   return (
     <React.Fragment>
@@ -31,7 +31,7 @@ describe("useFunnel hook", () => {
 
   it("should return a tuple containing a Funnel component (with a Step property) and changeStep function", () => {
     const { result } = renderHook(() => useFunnel(["step1"]));
-    const { FunnelComponent: Funnel, changeStep } = result.current;
+    const { Funnel, changeStep } = result.current;
 
     expect(Funnel).toBeDefined(); // Funnel
     expect(Funnel.Step).toBeDefined(); // Funnel.Step
@@ -40,7 +40,7 @@ describe("useFunnel hook", () => {
 
   it("should only accept Funnel.Step as children in the Funnel component", () => {
     const { result } = renderHook(() => useFunnel(["step1", "step2"]));
-    const { FunnelComponent: Funnel } = result.current;
+    const { Funnel } = result.current;
 
     const renderWithInvalidChild = () =>
       render(

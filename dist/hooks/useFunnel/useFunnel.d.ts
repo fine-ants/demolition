@@ -6,7 +6,7 @@ import { ReactNode } from "react";
  */
 export default function useFunnel<S extends string>(steps: S[]): {
     readonly currentStep: S;
-    readonly FunnelComponent: (({ children }: {
+    readonly Funnel: (({ children }: {
         children: ReactNode;
     }) => import("react/jsx-runtime").JSX.Element) & {
         Step: ({ children }: {
