@@ -8,7 +8,8 @@ const react_1 = require("@testing-library/react");
 const react_2 = __importDefault(require("react"));
 const useFunnel_1 = __importDefault(require("./useFunnel"));
 function TestComponent() {
-    const { FunnelComponent: Funnel, changeStep } = (0, useFunnel_1.default)(["step1", "step2"]);
+    const stepList = ["step1", "step2"];
+    const { FunnelComponent: Funnel, changeStep } = (0, useFunnel_1.default)(stepList);
     return ((0, jsx_runtime_1.jsxs)(react_2.default.Fragment, { children: [(0, jsx_runtime_1.jsxs)(Funnel, { children: [(0, jsx_runtime_1.jsx)(Funnel.Step, { name: "step1", children: "Step 1 UI" }), (0, jsx_runtime_1.jsx)(Funnel.Step, { name: "step2", children: "Step 2 UI" })] }), (0, jsx_runtime_1.jsx)("button", { onClick: () => changeStep("step2"), children: "Next Step" })] }));
 }
 describe("useFunnel hook", () => {
