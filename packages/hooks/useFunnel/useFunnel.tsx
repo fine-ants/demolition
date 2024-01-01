@@ -5,7 +5,7 @@ import { Children, ReactNode, isValidElement, useMemo, useState } from "react";
  *
  * @param {string[]} steps An array of the name of the steps.
  */
-export default function useFunnel<S extends string>(steps: [S, ...S[]]) {
+export default function useFunnel<S extends string>(steps: S[]) {
   const [currentStep, setCurrentStep] = useState<S>(steps[0]);
 
   const changeStep = (step: S) => {
@@ -41,5 +41,5 @@ export default function useFunnel<S extends string>(steps: [S, ...S[]]) {
     [currentStep]
   );
 
-  return [FunnelComponent, changeStep] as const;
+  return { currentStep, FunnelComponent, changeStep } as const;
 }

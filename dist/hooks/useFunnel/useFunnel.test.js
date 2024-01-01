@@ -8,7 +8,7 @@ const react_1 = require("@testing-library/react");
 const react_2 = __importDefault(require("react"));
 const useFunnel_1 = __importDefault(require("./useFunnel"));
 function TestComponent() {
-    const [Funnel, changeStep] = (0, useFunnel_1.default)(["step1", "step2"]);
+    const { FunnelComponent: Funnel, changeStep } = (0, useFunnel_1.default)(["step1", "step2"]);
     return ((0, jsx_runtime_1.jsxs)(react_2.default.Fragment, { children: [(0, jsx_runtime_1.jsxs)(Funnel, { children: [(0, jsx_runtime_1.jsx)(Funnel.Step, { name: "step1", children: "Step 1 UI" }), (0, jsx_runtime_1.jsx)(Funnel.Step, { name: "step2", children: "Step 2 UI" })] }), (0, jsx_runtime_1.jsx)("button", { onClick: () => changeStep("step2"), children: "Next Step" })] }));
 }
 describe("useFunnel hook", () => {
@@ -22,14 +22,14 @@ describe("useFunnel hook", () => {
     });
     it("should return a tuple containing a Funnel component (with a Step property) and changeStep function", () => {
         const { result } = (0, react_1.renderHook)(() => (0, useFunnel_1.default)(["step1"]));
-        const [Funnel, changeStep] = result.current;
+        const { FunnelComponent: Funnel, changeStep } = result.current;
         expect(Funnel).toBeDefined(); // Funnel
         expect(Funnel.Step).toBeDefined(); // Funnel.Step
         expect(changeStep).toBeDefined(); // changeStep
     });
     it("should only accept Funnel.Step as children in the Funnel component", () => {
         const { result } = (0, react_1.renderHook)(() => (0, useFunnel_1.default)(["step1", "step2"]));
-        const [Funnel] = result.current;
+        const { FunnelComponent: Funnel } = result.current;
         const renderWithInvalidChild = () => (0, react_1.render)((0, jsx_runtime_1.jsx)(react_2.default.Fragment, { children: (0, jsx_runtime_1.jsxs)(Funnel, { children: [(0, jsx_runtime_1.jsx)("div", { children: "I shouldn't be allowed" }), (0, jsx_runtime_1.jsx)(Funnel.Step, { name: "step1", children: "Step 1 UI" }), (0, jsx_runtime_1.jsx)(Funnel.Step, { name: "step2", children: "Step 2 UI" })] }) }));
         expect(renderWithInvalidChild).toThrow("div is not a <Funnel.Step> component. All component children of <Funnel> must be a <Funnel.Step>.");
     });
