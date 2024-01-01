@@ -31,7 +31,7 @@ function useFunnel(steps) {
     const FunnelComponent = (0, react_1.useMemo)(() => Object.assign(Funnel, { Step }), 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentStep]);
-    return [FunnelComponent, changeStep];
+    return { currentStep, FunnelComponent, changeStep };
 }
 exports.default = useFunnel;
 //# sourceMappingURL=useFunnel.js.map
