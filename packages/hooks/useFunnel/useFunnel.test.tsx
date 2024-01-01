@@ -3,7 +3,8 @@ import React from "react";
 import useFunnel from "./useFunnel";
 
 function TestComponent() {
-  const { FunnelComponent: Funnel, changeStep } = useFunnel(["step1", "step2"]);
+  const stepList = ["step1", "step2"];
+  const { FunnelComponent: Funnel, changeStep } = useFunnel(stepList);
 
   return (
     <React.Fragment>
