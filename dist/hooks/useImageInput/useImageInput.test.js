@@ -11,6 +11,12 @@ function TestComponent() {
     const { imageFilePath, imageFile, error, onChange, onClearImage } = (0, useImageInput_1.default)();
     return ((0, jsx_runtime_1.jsxs)(react_2.Fragment, { children: [(0, jsx_runtime_1.jsx)("input", { title: "image-input", type: "file", accept: "image/*", onChange: onChange }), (0, jsx_runtime_1.jsx)("p", { title: "input-error", children: error }), (0, jsx_runtime_1.jsx)("p", { title: "image-file-path", children: imageFilePath }), (0, jsx_runtime_1.jsx)("p", { title: "image-file-name", children: imageFile?.name }), (0, jsx_runtime_1.jsx)("button", { title: "image-clear-button", type: "button", onClick: onClearImage, children: "Clear Image" })] }));
 }
+function TestComponentWithInitialImageUrl() {
+    const { imageFilePath, imageFile, error, onChange, onClearImage } = (0, useImageInput_1.default)({
+        initialImageUrl: "https://t3.ftcdn.net/jpg/05/72/94/50/360_F_572945070_hZtbjfyuW6zJHveoGwz44KCGvzV0VDrO.jpg",
+    });
+    return ((0, jsx_runtime_1.jsxs)(react_2.Fragment, { children: [(0, jsx_runtime_1.jsx)("input", { title: "image-input", type: "file", accept: "image/*", onChange: onChange }), (0, jsx_runtime_1.jsx)("p", { title: "input-error", children: error }), (0, jsx_runtime_1.jsx)("p", { title: "image-file-path", children: imageFilePath }), (0, jsx_runtime_1.jsx)("p", { title: "image-file-name", children: imageFile?.name }), (0, jsx_runtime_1.jsx)("button", { title: "image-clear-button", type: "button", onClick: onClearImage, children: "Clear Image" })] }));
+}
 describe("useImageInput hook", () => {
     it("should successfully change the image file", async () => {
         const { getByTitle } = (0, react_1.render)((0, jsx_runtime_1.jsx)(TestComponent, {}));
@@ -85,6 +91,14 @@ describe("useImageInput hook", () => {
         await (0, react_1.waitFor)(() => {
             expect(getByTitle("image-file-name").textContent).toBe("");
             expect(getByTitle("image-file-path").textContent).toBe("");
+            expect(getByTitle("input-error").textContent).toBe("");
+        });
+    });
+    it("should successfully receive an initial image file path", async () => {
+        const { getByTitle } = (0, react_1.render)((0, jsx_runtime_1.jsx)(TestComponentWithInitialImageUrl, {}));
+        await (0, react_1.waitFor)(() => {
+            expect(getByTitle("image-file-name").textContent).toBe("");
+            expect(getByTitle("image-file-path").textContent).toBe("https://t3.ftcdn.net/jpg/05/72/94/50/360_F_572945070_hZtbjfyuW6zJHveoGwz44KCGvzV0VDrO.jpg");
             expect(getByTitle("input-error").textContent).toBe("");
         });
     });

@@ -7,6 +7,7 @@ type Props = {
         type?: string;
         extensions?: string;
     };
+    initialImageUrl?: string;
 };
 /**
  * A custom hook that handles image input.
@@ -17,7 +18,7 @@ type Props = {
  * @param {Object} config.errorMessages - An object of error messages.
  */
 export default function useImageInput(config?: Props): {
-    imageFilePath: string;
+    imageFilePath: string | undefined;
     imageFile: File | null;
     error: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;

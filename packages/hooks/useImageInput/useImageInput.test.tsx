@@ -24,6 +24,31 @@ function TestComponent() {
   );
 }
 
+function TestComponentWithInitialImageUrl() {
+  const { imageFilePath, imageFile, error, onChange, onClearImage } =
+    useImageInput({
+      initialImageUrl:
+        "https://t3.ftcdn.net/jpg/05/72/94/50/360_F_572945070_hZtbjfyuW6zJHveoGwz44KCGvzV0VDrO.jpg",
+    });
+
+  return (
+    <Fragment>
+      <input
+        title="image-input"
+        type="file"
+        accept="image/*"
+        onChange={onChange}
+      />
+      <p title="input-error">{error}</p>
+      <p title="image-file-path">{imageFilePath}</p>
+      <p title="image-file-name">{imageFile?.name}</p>
+      <button title="image-clear-button" type="button" onClick={onClearImage}>
+        Clear Image
+      </button>
+    </Fragment>
+  );
+}
+
 describe("useImageInput hook", () => {
   it("should successfully change the image file", async () => {
     const { getByTitle } = render(<TestComponent />);
@@ -115,6 +140,18 @@ describe("useImageInput hook", () => {
     await waitFor(() => {
       expect(getByTitle("image-file-name").textContent).toBe("");
       expect(getByTitle("image-file-path").textContent).toBe("");
+      expect(getByTitle("input-error").textContent).toBe("");
+    });
+  });
+
+  it("should successfully receive an initial image file path", async () => {
+    const { getByTitle } = render(<TestComponentWithInitialImageUrl />);
+
+    await waitFor(() => {
+      expect(getByTitle("image-file-name").textContent).toBe("");
+      expect(getByTitle("image-file-path").textContent).toBe(
+        "https://t3.ftcdn.net/jpg/05/72/94/50/360_F_572945070_hZtbjfyuW6zJHveoGwz44KCGvzV0VDrO.jpg"
+      );
       expect(getByTitle("input-error").textContent).toBe("");
     });
   });

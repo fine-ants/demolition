@@ -10,8 +10,8 @@ const react_1 = require("react");
  * @param {Object} config.errorMessages - An object of error messages.
  */
 function useImageInput(config) {
-    const { sizeLimit = 2000000, extensions = ["image/jpeg", "image/png", "image/gif"], errorMessages, } = config || {};
-    const [imageFilePath, setImageFilePath] = (0, react_1.useState)("");
+    const { sizeLimit = 2000000, extensions = ["image/jpeg", "image/png", "image/gif"], errorMessages, initialImageUrl, } = config || {};
+    const [imageFilePath, setImageFilePath] = (0, react_1.useState)(initialImageUrl);
     const [imageFile, setImageFile] = (0, react_1.useState)(null);
     const [error, setError] = (0, react_1.useState)("");
     const onChange = (e) => {

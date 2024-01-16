@@ -8,6 +8,7 @@ type Props = {
     type?: string;
     extensions?: string;
   };
+  initialImageUrl?: string;
 };
 
 /**
@@ -23,9 +24,10 @@ export default function useImageInput(config?: Props) {
     sizeLimit = 2000000,
     extensions = ["image/jpeg", "image/png", "image/gif"],
     errorMessages,
+    initialImageUrl,
   } = config || {};
 
-  const [imageFilePath, setImageFilePath] = useState("");
+  const [imageFilePath, setImageFilePath] = useState(initialImageUrl);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState("");
 
