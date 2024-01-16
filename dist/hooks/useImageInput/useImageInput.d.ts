@@ -21,5 +21,6 @@ export default function useImageInput(config?: Props): {
     imageFile: File | null;
     error: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onClearImage: () => void;
 };
 export {};

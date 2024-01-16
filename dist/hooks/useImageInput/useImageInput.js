@@ -53,7 +53,12 @@ function useImageInput(config) {
         setImageFile(newImageFile);
         setError("");
     };
-    return { imageFilePath, imageFile, error, onChange };
+    const onClearImage = () => {
+        setImageFilePath("");
+        setImageFile(null);
+        setError("");
+    };
+    return { imageFilePath, imageFile, error, onChange, onClearImage };
 }
 exports.default = useImageInput;
 //# sourceMappingURL=useImageInput.js.map

@@ -3,7 +3,8 @@ import { Fragment } from "react";
 import useImageInput from "./useImageInput";
 
 function TestComponent() {
-  const { imageFilePath, imageFile, error, onChange } = useImageInput();
+  const { imageFilePath, imageFile, error, onChange, onClearImage } =
+    useImageInput();
 
   return (
     <Fragment>
@@ -16,6 +17,9 @@ function TestComponent() {
       <p title="input-error">{error}</p>
       <p title="image-file-path">{imageFilePath}</p>
       <p title="image-file-name">{imageFile?.name}</p>
+      <button title="image-clear-button" type="button" onClick={onClearImage}>
+        Clear Image
+      </button>
     </Fragment>
   );
 }
@@ -84,6 +88,34 @@ describe("useImageInput hook", () => {
       expect(getByTitle("input-error").textContent).toBe(
         "Image extension not supported"
       );
+    });
+  });
+
+  it("should successfully remove the image file", async () => {
+    const { getByTitle } = render(<TestComponent />);
+
+    fireEvent.change(getByTitle("image-input"), {
+      target: {
+        files: [
+          new File(["hello"], "hello.png", {
+            type: "image/png",
+          }),
+        ],
+      },
+    });
+
+    await waitFor(() => {
+      expect(getByTitle("image-file-name").textContent).toBe("hello.png");
+      expect(getByTitle("image-file-path").textContent).not.toBe("");
+      expect(getByTitle("input-error").textContent).toBe("");
+    });
+
+    fireEvent.click(getByTitle("image-clear-button"));
+
+    await waitFor(() => {
+      expect(getByTitle("image-file-name").textContent).toBe("");
+      expect(getByTitle("image-file-path").textContent).toBe("");
+      expect(getByTitle("input-error").textContent).toBe("");
     });
   });
 });

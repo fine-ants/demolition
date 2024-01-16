@@ -78,5 +78,11 @@ export default function useImageInput(config?: Props) {
     setError("");
   };
 
-  return { imageFilePath, imageFile, error, onChange };
+  const onClearImage = () => {
+    setImageFilePath("");
+    setImageFile(null);
+    setError("");
+  };
+
+  return { imageFilePath, imageFile, error, onChange, onClearImage };
 }
