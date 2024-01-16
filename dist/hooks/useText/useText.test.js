@@ -25,5 +25,9 @@ describe("useText hook", () => {
         });
         expect(result.current.error).toBe("Invalid Email");
     });
+    it("isError should not be true if value is empty", () => {
+        const { result } = (0, react_1.renderHook)(() => (0, useText_1.default)({ validators: [textValidators_1.validateEmail] }));
+        expect(result.current.isError).toBe(false);
+    });
 });
 //# sourceMappingURL=useText.test.js.map

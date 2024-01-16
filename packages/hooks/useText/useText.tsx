@@ -43,10 +43,12 @@ export default function useText(config?: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isError = error !== "" && value !== "";
+
   return {
     value,
     error,
-    isError: error !== "",
+    isError,
     onChange,
   };
 }
