@@ -11,7 +11,7 @@ async function retryFn(asyncFn, numRetries = 3) {
         return await asyncFn();
     }
     catch (error) {
-        if (numRetries > 1) {
+        if (numRetries > 0) {
             return await retryFn(asyncFn, numRetries - 1);
         }
         else {

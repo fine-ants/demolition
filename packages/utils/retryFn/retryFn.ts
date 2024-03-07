@@ -11,7 +11,7 @@ export default async function retryFn<T>(
   try {
     return await asyncFn();
   } catch (error) {
-    if (numRetries > 1) {
+    if (numRetries > 0) {
       return await retryFn(asyncFn, numRetries - 1);
     } else {
       throw error;
