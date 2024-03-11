@@ -20,3 +20,4 @@ esm
 
 node_modules
 coverage
+dist
