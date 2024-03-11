@@ -1,2 +1,2 @@
-export * from "./retryFn/retryFn";
+export * from "./date";
 export * from "./textValidators";
