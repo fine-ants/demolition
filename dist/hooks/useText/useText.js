@@ -17,17 +17,15 @@ function useText(config) {
             setValue(newVal);
             return;
         }
-        // Reverse the order of validators to show the first error.
-        validators.reverse().forEach((validator) => {
+        for (const validator of validators) {
             try {
                 validator(newVal);
-                setError("");
             }
             catch (error) {
                 setError(error.message);
-                return;
+                break;
             }
-        });
+        }
         setValue(newVal);
     };
     (0, react_1.useEffect)(() => {
