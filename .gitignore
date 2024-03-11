@@ -20,4 +20,5 @@ esm
 
 node_modules
 coverage
-dist
+*.js
+*.d.ts

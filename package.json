@@ -2,12 +2,14 @@
   "name": "@fineants/demolition",
   "version": "1.1.7",
   "description": "A collection of TypeScript/JavaScript packages for React.",
+  "main": "packages/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "preversion": "npm run build",
-    "postversion": "git push --follow-tags",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A .",
+    "postversion": "git push && git push --tags",
     "prepare": "husky install",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "jest --coverage"
