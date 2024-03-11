@@ -24,16 +24,14 @@ export default function useText(config?: Props) {
       return;
     }
 
-    // Reverse the order of validators to show the first error.
-    validators.reverse().forEach((validator) => {
+    for (const validator of validators) {
       try {
         validator(newVal);
-        setError("");
       } catch (error) {
         setError((error as Error).message);
-        return;
+        break;
       }
-    });
+    }
 
     setValue(newVal);
   };

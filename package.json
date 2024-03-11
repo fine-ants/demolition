@@ -1,25 +1,25 @@
 {
   "name": "@fineants/demolition",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "description": "A collection of TypeScript/JavaScript packages for React.",
-  "main": "dist/index.js",
+  "main": "packages/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "preversion": "npm run build",
-    "postversion": "git push --follow-tags",
+    "preversion": "npm test",
+    "version": "npm run build && git reset -- '*.map' && git add -A .",
+    "postversion": "git push && git push --tags",
     "prepare": "husky install",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "jest --coverage"
   },
   "files": [
-    "dist",
     "packages"
   ],
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fine-ants/demolition.git"
