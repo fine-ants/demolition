@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * This is a function that retries an async function `numRetries` times before throwing an error.
  *
  * @param {Function} asyncFn A function that returns a Promise.
- * @param {string} numRetries Default = 3.
+ * @param {number} numRetries Default = 3.
  */
 async function retryFn(asyncFn, numRetries = 3) {
     try {
