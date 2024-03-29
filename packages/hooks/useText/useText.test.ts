@@ -1,5 +1,9 @@
 import { renderHook } from "@testing-library/react";
-import { validateEmail, validatePassword } from "@utils/textValidators";
+import {
+  validateEmail,
+  validateNickname,
+  validatePassword,
+} from "@utils/textValidators";
 import { act } from "react-dom/test-utils";
 import useText from "./useText";
 
@@ -14,6 +18,18 @@ describe("useText hook", () => {
     expect(result.current.error).toBe("");
   });
 
+  it("should successfully change the value after passing the validator", () => {
+    const { result } = renderHook(() =>
+      useText({ validators: [validateNickname] })
+    );
+    const { onChange } = result.current;
+    act(() => {
+      onChange("nickname");
+    });
+    expect(result.current.value).toBe("nickname");
+    expect(result.current.error).toBe("");
+  });
+
   it("should throw an error for the first validator if multiple validators throw errors", () => {
     const { result } = renderHook(() =>
       useText({ validators: [validateEmail, validatePassword] })
@@ -23,6 +39,23 @@ describe("useText hook", () => {
       onChange("hello");
     });
     expect(result.current.error).toBe("Invalid Email");
+  });
+
+  it("should successfully reset the error after receiving a new valid input", () => {
+    const { result } = renderHook(() =>
+      useText({ validators: [validateEmail] })
+    );
+    const { onChange } = result.current;
+
+    act(() => {
+      onChange("hello");
+    });
+    expect(result.current.error).toBe("Invalid Email");
+
+    act(() => {
+      onChange("test@test.com");
+    });
+    expect(result.current.error).toBe("");
   });
 
   it("isError should not be true if value is empty", () => {
