@@ -47,16 +47,6 @@ export default function formatUnit(value: number, config?: Config) {
 
   const sign: Sign = value < 0 ? "-" : "";
 
-  if (forcedUnit) {
-    return abbreviate(
-      absValue,
-      decimalPlaceToRoundAt,
-      maxDecimalPlaces,
-      forcedUnit,
-      sign
-    );
-  }
-
   let unit: Unit = "";
   if (absValue >= 1e12) {
     unit = "T";
@@ -68,21 +58,23 @@ export default function formatUnit(value: number, config?: Config) {
     unit = "K";
   }
 
-  return abbreviate(
+  unit = forcedUnit ? forcedUnit : unit;
+
+  const finalValueStr = abbreviate(
     absValue,
     decimalPlaceToRoundAt,
     maxDecimalPlaces,
-    unit,
-    sign
+    unit
   );
+
+  return `${sign}${finalValueStr}${unit}`;
 }
 
 function abbreviate(
   value: number,
   decimalPlaceToRoundAt: number | undefined,
   maxDecimalPlaces: number | undefined,
-  unit: Unit,
-  sign: Sign
+  unit: Unit
 ) {
   let roundedValue = 0;
   switch (unit) {
@@ -107,7 +99,7 @@ function abbreviate(
 
   if (decimalPlaceToRoundAt !== undefined) {
     const regex = new RegExp(`\\.\\d{${decimalPlaceToRoundAt + 1},}$`);
-    const hasValidDecimals = regex.test(roundedValue.toString());
+    const hasValidDecimals = regex.test(roundedValueStr);
     if (hasValidDecimals) {
       roundedValueStr = roundedValue.toFixed(decimalPlaceToRoundAt);
     }
@@ -122,5 +114,5 @@ function abbreviate(
     splitRoundedValueStr[1] ? "." + splitRoundedValueStr[1] : ""
   }`;
 
-  return `${sign}${finalValueStr}${unit}`;
+  return finalValueStr;
 }
