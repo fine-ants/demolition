@@ -27,6 +27,7 @@ export default function useText(config?: Props) {
     for (const validator of validators) {
       try {
         validator(newVal);
+        setError("");
       } catch (error) {
         setError((error as Error).message);
         break;

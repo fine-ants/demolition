@@ -25,6 +25,23 @@ describe("useText hook", () => {
     expect(result.current.error).toBe("Invalid Email");
   });
 
+  it("should throw an error for the first validator if multiple validators throw errors", () => {
+    const { result } = renderHook(() =>
+      useText({ validators: [validateEmail] })
+    );
+    const { onChange } = result.current;
+
+    act(() => {
+      onChange("hello");
+    });
+    expect(result.current.error).toBe("Invalid Email");
+
+    act(() => {
+      onChange("test@test.com");
+    });
+    expect(result.current.error).toBe("");
+  });
+
   it("isError should not be true if value is empty", () => {
     const { result } = renderHook(() =>
       useText({ validators: [validateEmail] })
