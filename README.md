@@ -23,6 +23,10 @@ npm i @fineants/demolition
 import { useText } from "@fineantes/demolition";
 ```
 
+## Contributing
+
+If you're interested in contributing, please check out [our contributing guidelines](CONTRIBUTING.md).
+
 ## License
 
 This project is [MIT](/LICENSE) licensed.
