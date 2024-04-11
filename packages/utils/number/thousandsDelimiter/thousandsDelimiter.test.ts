@@ -50,6 +50,11 @@ describe("thousandsDelimiter and removeThousandsDelimiter utility functions", ()
     );
   });
 
+  it("should correctly format using a custom delimiter", () => {
+    expect(thousandsDelimiter(1000, "-")).toBe("1-000");
+    expect(thousandsDelimiter(1000000, "_")).toBe("1_000_000");
+  });
+
   // removeThousandsDelimiter
   it("should remove thousands delimiter from string input", () => {
     expect(removeThousandsDelimiter("1,000")).toBe("1000");
@@ -61,5 +66,10 @@ describe("thousandsDelimiter and removeThousandsDelimiter utility functions", ()
   it("should handle string input without delimiter", () => {
     expect(removeThousandsDelimiter("1000")).toBe("1000");
     expect(removeThousandsDelimiter("1000.12")).toBe("1000.12");
+  });
+
+  it("should correctly format using a custom delimiter", () => {
+    expect(removeThousandsDelimiter("1-000", "-")).toBe("1000");
+    expect(removeThousandsDelimiter("1_000_000", "_")).toBe("1000000");
   });
 });
