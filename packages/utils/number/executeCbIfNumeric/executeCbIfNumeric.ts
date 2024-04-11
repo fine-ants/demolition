@@ -6,7 +6,7 @@ import {
 type Props = {
   value: string;
   callback: (value: string) => void;
-  shouldDelimiter?: boolean;
+  includeDelimiter?: boolean;
   delimiter?: string;
 };
 
@@ -18,14 +18,14 @@ type Props = {
  * @param {Props} props - The properties object.
  * @param {string} props.value - The input value to be processed by the callback function.
  * @param {(value: string) => void} props.callback - A callback function receiving the value only if it's numeric or an empty string.
- * @param {boolean} [props.shouldDelimiter=true] - A boolean flag to include thousands delimiter in the formatted value. (default: true)
+ * @param {boolean} [props.includeDelimiter=true] - A boolean flag to include thousands delimiter in the formatted value. (default: true)
  * @param {string} [props.delimiter=","] - The thousands delimiter to use. (default: ",")
  * **/
 
-export function handleNumericCallback({
+export function executeCbIfNumeric({
   value,
   callback,
-  shouldDelimiter = true,
+  includeDelimiter = true,
   delimiter = ",",
 }: Props) {
   const parsedValue = removeThousandsDelimiter(value, delimiter);
@@ -34,7 +34,9 @@ export function handleNumericCallback({
     callback(parsedValue);
   } else if (!isNaN(Number(parsedValue))) {
     callback(
-      shouldDelimiter ? thousandsDelimiter(parsedValue, delimiter) : parsedValue
+      includeDelimiter
+        ? thousandsDelimiter(parsedValue, delimiter)
+        : parsedValue
     );
   }
 }

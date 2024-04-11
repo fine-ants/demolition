@@ -1,2 +1,2 @@
-export * from "./handleNumericCallback/handleNumericCallback";
+export * from "./executeCbIfNumeric/executeCbIfNumeric";
 export * from "./thousandsDelimiter/thousandsDelimiter";

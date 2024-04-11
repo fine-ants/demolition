@@ -1,6 +1,6 @@
-import { handleNumericCallback } from "./handleNumericCallback";
+import { executeCbIfNumeric } from "./executeCbIfNumeric";
 
-describe("handleNumericCallback util function", () => {
+describe("executeCbIfNumeric util function", () => {
   const mockCallback = jest.fn();
 
   afterEach(() => {
@@ -8,7 +8,7 @@ describe("handleNumericCallback util function", () => {
   });
 
   it("should call the callback with an empty string if the input value is an empty string", () => {
-    handleNumericCallback({
+    executeCbIfNumeric({
       value: "",
       callback: mockCallback,
     });
@@ -16,29 +16,29 @@ describe("handleNumericCallback util function", () => {
   });
 
   it("should call the callback with the formatted value if the input value is a number", () => {
-    handleNumericCallback({ value: "1234", callback: mockCallback });
+    executeCbIfNumeric({ value: "1234", callback: mockCallback });
     expect(mockCallback).toHaveBeenCalledWith("1,234");
   });
 
   it("should call the callback with the unformatted value if the input value is a number and commas are disabled", () => {
-    handleNumericCallback({
+    executeCbIfNumeric({
       value: "1234",
       callback: mockCallback,
-      shouldDelimiter: false,
+      includeDelimiter: false,
     });
     expect(mockCallback).toHaveBeenCalledWith("1234");
   });
 
   it("should not call the callback if the input value is not a number", () => {
-    handleNumericCallback({ value: "123hi", callback: mockCallback });
+    executeCbIfNumeric({ value: "123hi", callback: mockCallback });
     expect(mockCallback).not.toHaveBeenCalled();
   });
 
   it("should call the callback with the formatted value using a custom delimiter", () => {
-    handleNumericCallback({
+    executeCbIfNumeric({
       value: "1234",
       callback: mockCallback,
-      shouldDelimiter: true,
+      includeDelimiter: true,
       delimiter: "-",
     });
     expect(mockCallback).toHaveBeenCalledWith("1-234");
