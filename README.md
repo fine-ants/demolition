@@ -20,7 +20,7 @@ npm i @fineants/demolition
 ## Example
 
 ```ts
-import { useText } from "@fineantes/demolition";
+import { useText } from "@fineants/demolition";
 ```
 
 ## Contributing
