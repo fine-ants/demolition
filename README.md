@@ -3,7 +3,7 @@
 <div align="center">
   <img alt="npm bundle size" src="https://img.shields.io/npm/v/@fineants/demolition">
   <img alt="npm bundle size" src="https://img.shields.io/npm/dt/@fineants/demolition">
-  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@fineants/demolition">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlejs/size/@fineants/demolition">
   <img alt="npm bundle size" src="https://img.shields.io/github/license/fine-ants/demolition">
 </div>
 
