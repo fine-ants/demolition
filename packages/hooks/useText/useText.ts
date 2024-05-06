@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   initialValue?: string;
@@ -36,11 +36,6 @@ export default function useText(config?: Props) {
 
     setValue(newVal);
   };
-
-  useEffect(() => {
-    onChange(initialValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const isError = error !== "" && value !== "";
 

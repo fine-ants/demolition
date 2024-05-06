@@ -14,6 +14,11 @@ const isOddNumber = (value: number) => {
 };
 
 describe("useNumber hook", () => {
+  it("should successfully render the initial value", () => {
+    const { result } = renderHook(() => useNumber({ initialValue: "1000" }));
+    expect(result.current.value).toBe("1,000");
+  });
+
   it("should successfully change the value", () => {
     const { result } = renderHook(() => useNumber());
     const { onChange } = result.current;

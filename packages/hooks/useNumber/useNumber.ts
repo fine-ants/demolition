@@ -1,5 +1,5 @@
 import { removeThousandsDelimiter, thousandsDelimiter } from "@utils/number";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   initialValue?: string;
@@ -18,7 +18,11 @@ type Props = {
 export default function useNumber(config?: Props) {
   const { initialValue = "", validators, delimiters = true } = config || {};
 
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(
+    delimiters
+      ? thousandsDelimiter(removeThousandsDelimiter(initialValue))
+      : initialValue
+  );
   const [error, setError] = useState("");
 
   const onChange = (newVal: string) => {
@@ -45,11 +49,6 @@ export default function useNumber(config?: Props) {
       delimiters ? thousandsDelimiter(removeThousandsDelimiter(newVal)) : newVal
     );
   };
-
-  useEffect(() => {
-    onChange(initialValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const isError = error !== "" && value !== "";
 
