@@ -6,3 +6,6 @@ npm test
 
 # Run lint-staged
 npx lint-staged
+
+# Build
+npm run build
