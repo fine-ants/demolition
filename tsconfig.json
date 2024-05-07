@@ -18,14 +18,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-
-    /* Path Alias */
-    "baseUrl": ".",
-    "paths": {
-      "@hooks/*": ["packages/hooks/*"],
-      "@utils/*": ["packages/utils/*"]
-    }
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["packages"],
   "exclude": ["node_modules"]

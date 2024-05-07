@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import {
   validateEmail,
   validateNickname,
   validatePassword,
-} from "@utils/textValidators";
-import { act } from "react-dom/test-utils";
+} from "../../utils/textValidators";
 import useText from "./useText";
 
 describe("useText hook", () => {
