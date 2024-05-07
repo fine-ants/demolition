@@ -1,5 +1,8 @@
-import { removeThousandsDelimiter, thousandsDelimiter } from "@utils/number";
 import { useState } from "react";
+import {
+  removeThousandsDelimiter,
+  thousandsDelimiter,
+} from "../../utils/number";
 
 type Props = {
   initialValue?: string;
