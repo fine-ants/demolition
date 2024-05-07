@@ -8,6 +8,11 @@ import { act } from "react-dom/test-utils";
 import useText from "./useText";
 
 describe("useText hook", () => {
+  it("should successfully render the initial value", () => {
+    const { result } = renderHook(() => useText({ initialValue: "text" }));
+    expect(result.current.value).toBe("text");
+  });
+
   it("should successfully change the value", () => {
     const { result } = renderHook(() => useText());
     const { onChange } = result.current;
