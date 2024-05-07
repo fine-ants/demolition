@@ -8,5 +8,6 @@ module.exports = {
     "^@hooks(.*)$": "<rootDir>/packages/hooks$1",
     "^@utils(.*)$": "<rootDir>/packages/utils$1",
   },
+  testMatch: ["**/?(*.)+(test).(ts|tsx)"],
   testPathIgnorePatterns: ["node_modules", "dist"],
 };
