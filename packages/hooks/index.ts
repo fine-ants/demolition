@@ -1,3 +1,4 @@
+export { default as useBoolean } from "./useBoolean/useBoolean";
 export { default as useDebounce } from "./useDebounce/useDebounce";
 export { default as useFunnel } from "./useFunnel/useFunnel";
 export { default as useImageInput } from "./useImageInput/useImageInput";
